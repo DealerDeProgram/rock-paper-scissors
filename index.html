@@ -1,40 +1,83 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Rock - Paper - Scissors</title>
+<meta charset="UTF-8">
+<title>RPS Online</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #111;
+    color: white;
+    text-align: center;
+    margin-top: 80px;
+}
+
+h1 {
+    font-size: 40px;
+    margin-bottom: 40px;
+}
+
+button {
+    font-size: 20px;
+    padding: 15px 25px;
+    margin: 10px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+#rock { background: #3498db; }
+#paper { background: #2ecc71; }
+#scissors { background: #e74c3c; }
+
+#result {
+    margin-top: 40px;
+    font-size: 22px;
+}
+</style>
+
 </head>
+
 <body>
 
-<h1>Rock Paper Scissors</h1>
+<h1>✊ ✋ ✌️ Rock Paper Scissors</h1>
 
-<button onclick="play('rock')">Rock</button>
-<button onclick="play('paper')">Paper</button>
-<button onclick="play('scissors')">Scissors</button>
+<button id="rock" onclick="play('rock')">Rock</button>
+<button id="paper" onclick="play('paper')">Paper</button>
+<button id="scissors" onclick="play('scissors')">Scissors</button>
 
-<p id="result"></p>
+<p id="result">Choose your move 👇</p>
 
 <script>
-function play(choice) {
+function play(playerChoice) {
     const options = ["rock", "paper", "scissors"];
-    const computer = options[Math.floor(Math.random() * 3)];
+    const computerChoice = options[Math.floor(Math.random() * 3)];
 
     let result = "";
 
-    if (choice === computer) {
-        result = "Draw 🤝";
-    } else if (
-        (choice === "rock" && computer === "scissors") ||
-        (choice === "paper" && computer === "rock") ||
-        (choice === "scissors" && computer === "paper")
+    if (playerChoice === computerChoice) {
+        result = "🤝 Draw";
+    } 
+    else if (
+        (playerChoice === "rock" && computerChoice === "scissors") ||
+        (playerChoice === "paper" && computerChoice === "rock") ||
+        (playerChoice === "scissors" && computerChoice === "paper")
     ) {
-        result = "You win 🎉";
+        result = "🎉 You Win!";
     } else {
-        result = "You lose 😭";
+        result = "💀 You Lose!";
     }
 
-    document.getElementById("result").innerText =
-        "You: " + choice + " | Computer: " + computer + " => " + result;
+    document.getElementById("result").innerHTML =
+        "You: " + playerChoice +
+        "<br>Computer: " + computerChoice +
+        "<br><b>" + result + "</b>";
 }
 </script>
 
